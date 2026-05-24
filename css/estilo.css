@@ -287,3 +287,12 @@ body {
     color: var(--accent);
     text-shadow: 0 0 20px rgba(255, 85, 0, 0.3);
 }
+
+.card-title {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
