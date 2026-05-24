@@ -20,7 +20,7 @@
         .video-card .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 50px; height: 50px; background: rgba(255,85,0,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
         .video-card .play-icon::after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent white; margin-left: 3px; }
         .video-card:hover .play-icon { background: #ff3300; }
-        .video-card .card-title { padding: 0.8rem 1rem; color: var(--text-secondary); margin: 0; border-top: 1px solid var(--border); text-transform: uppercase; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+        .video-card .card-title { padding: 0.8rem 1rem; color: var(--text-secondary); margin: 0; border-top: 1px solid var(--border); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 9999; align-items: center; justify-content: center; }
         .modal.active { display: flex; }
         .modal-container { position: relative; width: 95%; max-width: 1200px; }
@@ -106,91 +106,95 @@
             </div>
         </div>
     </footer>
+    <script src="js/fittext.js"></script>
     <script>
-        const playlists = [
-            { name: "GoodMakingNoise", id: "2242138883" },
-            { name: "DeepMakingRhythm", id: "319288256" }
+        const gmnTracks = [
+            {title:"GMNoise Suite 01",id:"350657683",img:"https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg"},
+            {title:"GMNoise Suite 0",id:"274733117",img:"https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg"},
+            {title:"La Música De Las Renovables",id:"318816824",img:"https://i1.sndcdn.com/artworks-000218940955-b7p25o-t500x500.jpg"},
+            {title:"Hg38GRCh38",id:"277564374",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Human Polyomavirus 9",id:"277564371",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Human Protein",id:"277562810",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Saccharomyces Cerevisiae",id:"277562808",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Sample - 13",id:"265367587",img:"https://i1.sndcdn.com/artworks-000163973094-pplqk2-t500x500.jpg"},
+            {title:"JUMJUM",id:"265360985",img:"https://i1.sndcdn.com/artworks-000163968001-zyip4z-t500x500.jpg"},
+            {title:"Orchestratest15exp",id:"336277977",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest14exp",id:"336277964",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest10subexp",id:"336277937",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest4",id:"336277903",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest3",id:"336277888",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"01 - Subbyng",id:"265096332",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"02 - Paranadaparanoia",id:"265096331",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"03 - Ultratrance",id:"265096330",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"04 - Upsssnotgoodb",id:"265096327",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"05 - Reelonga",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"06 - Upssnotgooda",id:"265096320",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"07 - Agonic Words",id:"265096316",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"08 - Posttrance",id:"265096313",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"09 - Mijowa2",id:"265096311",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"10 - Jujuju2 TRUE",id:"265096308",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"11 - Ejercicio Auditivo",id:"265096307",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"12 - Ejercicio Auditivo 2",id:"265096301",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
         ];
-        let currentPlaylist = 0;
-
-        const gmnImages = [
-            "https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000218940955-b7p25o-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163973094-pplqk2-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163968001-zyip4z-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg",
-            "https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"
+        const dmrTracks = [
+            {title:"Acousticmetall",id:"320086031",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Amosavore",id:"320086030",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Auxiliarredux",id:"320086029",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Experimentosdesdelascloacas",id:"320086028",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Feijo",id:"320086026",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Hard T43echoampli",id:"320086025",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Nohaypodonde...",id:"320086024",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Psss",id:"320086022",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Riopsss2",id:"320086021",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Sireasonsi",id:"320086022",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Tremendo",id:"320086017",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Untitled",id:"320086015",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Vateavore",id:"320086014",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"VAYATELA..",id:"320086013",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"}
         ];
-
-        const gmnTitles = [
-            "GMNoise Suite 01","GMNoise Suite 0","La Música De Las Renovables",
-            "Hg38GRCh38","Human Polyomavirus 9","Human Protein","Saccharomyces Cerevisiae",
-            "Sample - 13","JUMJUM",
-            "Orchestratest15exp","Orchestratest14exp","Orchestratest10subexp","Orchestratest4","Orchestratest3",
-            "01 - Subbyng","02 - Paranadaparanoia","03 - Ultratrance","04 - Upsssnotgoodb","05 - Reelonga",
-            "06 - Upssnotgooda","07 - Agonic Words","08 - Posttrance","09 - Mijowa2","10 - Jujuju2 TRUE",
-            "11 - Ejercicio Auditivo","12 - Ejercicio Auditivo 2"
-        ];
-
-        function createCard(img, title, playlistIndex) {
+        let currentTrackIndex = -1, currentTrackList = [], isTransitioning = false;
+        const allTracks = gmnTracks.concat(dmrTracks);
+        function createCard(track, index, list) {
             const card = document.createElement("div");
             card.className = "video-card";
-            const imgEl = document.createElement("img");
-            imgEl.src = img; imgEl.alt = title; imgEl.loading = "lazy";
+            const img = document.createElement("img");
+            img.src = track.img; img.alt = track.title; img.loading = "lazy";
             const play = document.createElement("div"); play.className = "play-icon";
-            const cardTitle = document.createElement("p"); cardTitle.className = "card-title"; cardTitle.textContent = title;
-            card.appendChild(imgEl); card.appendChild(play); card.appendChild(cardTitle);
-            card.addEventListener("click", function() { openPlaylist(playlistIndex); });
+            const cardTitle = document.createElement("p"); cardTitle.className = "card-title"; cardTitle.textContent = track.title;
+            card.appendChild(img); card.appendChild(play); card.appendChild(cardTitle);
+            card.addEventListener("click", function() { currentTrackList = allTracks; if (list === gmnTracks) currentTrackIndex = index; else currentTrackIndex = gmnTracks.length + index; playTrack(track); });
             return card;
         }
-
-        function openPlaylist(index) {
-            currentPlaylist = index;
-            const p = playlists[index];
-            document.getElementById("modal-content").innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A'+p.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
-            document.getElementById("track-info").textContent = p.name;
+        function playTrack(track) {
+            const content = document.getElementById("modal-content");
+            content.classList.add("fade-out");
+            setTimeout(function() {
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+                content.classList.remove("fade-out");
+            }, 250);
+            document.getElementById("track-info").textContent = track.title;
             document.getElementById("video-modal").classList.add("active");
             document.body.style.overflow = "hidden";
         }
-
-        function prevPlaylist() {
-            currentPlaylist = currentPlaylist === 0 ? playlists.length - 1 : currentPlaylist - 1;
-            openPlaylist(currentPlaylist);
+        function prevTrack() {
+            if (isTransitioning) return;
+            isTransitioning = true; currentTrackIndex = currentTrackIndex <= 0 ? allTracks.length - 1 : currentTrackIndex - 1; playTrack(currentTrackList[currentTrackIndex]);
+            setTimeout(function() { isTransitioning = false; }, 400);
         }
-
-        function nextPlaylist() {
-            currentPlaylist = currentPlaylist === playlists.length - 1 ? 0 : currentPlaylist + 1;
-            openPlaylist(currentPlaylist);
+        function nextTrack() {
+            if (isTransitioning) return;
+            isTransitioning = true; currentTrackIndex = currentTrackIndex >= allTracks.length - 1 ? 0 : currentTrackIndex + 1; playTrack(currentTrackList[currentTrackIndex]);
+            setTimeout(function() { isTransitioning = false; }, 400);
         }
-
         function closeModal() {
             document.getElementById("video-modal").classList.remove("active");
             document.getElementById("modal-content").innerHTML = "";
             document.body.style.overflow = "";
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const gmnContainer = document.getElementById("gmn-gallery");
+        function buildGMN() {
+            const container = document.getElementById("gmn-gallery");
+            if (!container) return;
+            container.innerHTML = "";
             const groups = [
                 {name:"GMNoise Suites",tracks:[0,1]},{name:"La Música De Las Renovables",tracks:[2]},
                 {name:"Cromosomica",tracks:[3,4,5,6]},{name:"Singles",tracks:[7,8]},
@@ -201,24 +205,27 @@
                 const title = document.createElement("h3"); title.className = "day-title"; title.textContent = group.name;
                 groupDiv.appendChild(title);
                 const grid = document.createElement("div"); grid.className = "day-videos";
-                group.tracks.forEach(function(i) { grid.appendChild(createCard(gmnImages[i], gmnTitles[i], 0)); });
-                groupDiv.appendChild(grid); gmnContainer.appendChild(groupDiv);
+                group.tracks.forEach(function(i) { grid.appendChild(createCard(gmnTracks[i], i, gmnTracks)); });
+                groupDiv.appendChild(grid); container.appendChild(groupDiv);
             });
-
-            const dmrContainer = document.getElementById("dmr-gallery");
-            const dmrGrid = document.createElement("div"); dmrGrid.className = "day-videos";
-            for (let i = 0; i < 14; i++) {
-                dmrGrid.appendChild(createCard("https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg", "DMR Track "+(i+1), 1));
-            }
-            dmrContainer.appendChild(dmrGrid);
-
+        }
+        function buildDMR() {
+            const container = document.getElementById("dmr-gallery");
+            if (!container) return;
+            container.innerHTML = "";
+            const grid = document.createElement("div"); grid.className = "day-videos";
+            dmrTracks.forEach(function(track, i) { grid.appendChild(createCard(track, i, dmrTracks)); });
+            container.appendChild(grid);
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            buildGMN(); buildDMR();
             document.getElementById("video-modal").addEventListener("click", function(e) { if (e.target === this) closeModal(); });
-            document.getElementById("nav-prev").addEventListener("click", function(e) { e.stopPropagation(); prevPlaylist(); });
-            document.getElementById("nav-next").addEventListener("click", function(e) { e.stopPropagation(); nextPlaylist(); });
+            document.getElementById("nav-prev").addEventListener("click", function(e) { e.stopPropagation(); prevTrack(); });
+            document.getElementById("nav-next").addEventListener("click", function(e) { e.stopPropagation(); nextTrack(); });
             document.addEventListener("keydown", function(e) {
                 if (!document.getElementById("video-modal").classList.contains("active")) return;
-                if (e.key === "ArrowLeft") prevPlaylist();
-                if (e.key === "ArrowRight") nextPlaylist();
+                if (e.key === "ArrowLeft") prevTrack();
+                if (e.key === "ArrowRight") nextTrack();
                 if (e.key === "Escape") closeModal();
             });
         });
