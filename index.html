@@ -166,7 +166,7 @@
             const content = document.getElementById("modal-content");
             content.classList.add("fade-out");
             setTimeout(function() {
-                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>'; setTimeout(function() { var p = document.getElementById("sc-player"); if(p) { var w = SC.Widget(p); w.bind(SC.Widget.Events.FINISH, function() { if(currentTrackIndex < currentTrackList.length-1) { currentTrackIndex++; playTrack(currentTrackList[currentTrackIndex]); } else { currentTrackIndex = 0; playTrack(currentTrackList[0]); } }); } }, 500);
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
                 content.classList.remove("fade-out");
             }, 250);
             document.getElementById("track-info").textContent = track.title;
