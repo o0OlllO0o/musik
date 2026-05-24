@@ -250,3 +250,35 @@ body {
     margin: 0;
     padding: 0.5rem 0;
 }
+
+/* Estilos para tracks individuales */
+.track-item {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease forwards;
+}
+.track-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+.track-item iframe {
+    display: block;
+    border: none;
+}
+.track-title {
+    padding: 0.8rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+    border-top: 1px solid var(--border);
+}
+.no-tracks {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+    font-style: italic;
+}
