@@ -24,7 +24,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 10, 10, 0.95);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
@@ -43,7 +43,7 @@ body {
 .nav-logo {
     font-weight: 800;
     font-size: 1.2rem;
-    background: var(--gradient);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -67,7 +67,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: 
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
         linear-gradient(135deg, rgba(255,85,0,0.3), rgba(10,10,10,0.9)),
         url('https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg') center/cover no-repeat;
     background-attachment: fixed;
@@ -75,7 +75,7 @@ body {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: transparent;
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
 }
 .hero-content {
     position: relative;
@@ -122,21 +122,21 @@ body {
     border: 2px solid transparent;
 }
 .btn-primary {
-    background: var(--accent);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     color: white;
 }
 .btn-primary:hover {
-    background: var(--accent-hover);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(255, 85, 0, 0.4);
 }
 .btn-secondary {
-    background: transparent;
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     color: white;
     border-color: var(--accent);
 }
 .btn-secondary:hover {
-    background: var(--accent);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     transform: translateY(-2px);
 }
 
@@ -148,7 +148,7 @@ body {
     gap: 2rem;
     margin-bottom: 3rem;
     padding: 2rem;
-    background: var(--bg-secondary);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     border-radius: 16px;
     border: 1px solid var(--border);
 }
@@ -177,7 +177,7 @@ body {
 }
 .tracks-grid iframe {
     border-radius: 12px;
-    background: var(--bg-card);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     width: 100%;
     height: 350px;
     border: 1px solid var(--border);
@@ -195,7 +195,7 @@ body {
     font-style: italic;
 }
 .footer {
-    background: var(--bg-secondary);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     border-top: 1px solid var(--border);
     padding: 3rem 2rem;
     margin-top: 4rem;
@@ -231,7 +231,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--bg-secondary);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     border-top: 1px solid var(--accent);
     padding: 0.5rem 2rem;
     z-index: 999;
@@ -253,7 +253,7 @@ body {
 
 /* Estilos para tracks individuales */
 .track-item {
-    background: var(--bg-card);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
@@ -328,7 +328,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: url("https://i1.sndcdn.com/visuals-000227848982-N0K7AM-original.jpg") center/cover no-repeat;
     color: #fff;
     padding: 0.6rem 0.8rem;
     font-size: 14px;
