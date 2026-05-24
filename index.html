@@ -23,16 +23,24 @@
         .video-card .card-title { padding: 0.8rem 1rem; color: var(--text-secondary); font-size: 0.85rem; margin: 0; border-top: 1px solid var(--border); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 9999; align-items: center; justify-content: center; }
         .modal.active { display: flex; }
-        .modal-content { width: 85%; max-width: 1200px; aspect-ratio: 16/9; position: relative; }
+        .modal-container { position: relative; width: 90%; max-width: 1000px; }
+        .modal-content { width: 100%; aspect-ratio: 16/9; transition: opacity 0.3s ease; }
         .modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
-        .modal-close { position: absolute; top: -2rem; right: 0; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10001; transition: color 0.3s; }
+        .modal-content.fade-out { opacity: 0; }
+        .modal-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10001; transition: color 0.3s; }
         .modal-close:hover { color: var(--accent); }
-        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3rem; color: #fff; cursor: pointer; z-index: 10001; user-select: none; transition: color 0.3s, background 0.3s; width: 60px; height: 80px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 8px; }
-        .nav-arrow:hover { color: var(--accent); background: rgba(0,0,0,0.7); }
-        .nav-prev { left: -80px; }
-        .nav-next { right: -80px; }
-        .track-info { position: absolute; bottom: -3rem; left: 0; right: 0; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
-        @media (max-width: 600px) { .day-videos { grid-template-columns: 1fr; } .modal-content { width: 100%; } .nav-prev { left: 10px; } .nav-next { right: 10px; } }
+        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3.5rem; color: #fff; cursor: pointer; z-index: 10001; user-select: none; transition: color 0.3s, background 0.3s; width: 56px; height: 90px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); border-radius: 8px; }
+        .nav-arrow:hover { color: var(--accent); background: rgba(0,0,0,0.6); }
+        .nav-prev { left: -70px; }
+        .nav-next { right: -70px; }
+        .track-info { text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem; }
+        @media (max-width: 768px) { 
+            .day-videos { grid-template-columns: 1fr; } 
+            .modal-container { width: 96%; }
+            .nav-prev { left: 5px; top: 40%; }
+            .nav-next { right: 5px; top: 40%; }
+            .nav-arrow { width: 40px; height: 60px; font-size: 2.5rem; background: rgba(0,0,0,0.6); }
+        }
     </style>
 </head>
 <body>
@@ -82,11 +90,11 @@
         </section>
     </main>
     <div class="modal" id="video-modal">
-        <div class="modal-content">
+        <div class="modal-container">
             <span class="modal-close" id="modal-close">&times;</span>
             <span class="nav-arrow nav-prev" id="nav-prev">‹</span>
             <span class="nav-arrow nav-next" id="nav-next">›</span>
-            <div id="modal-content"></div>
+            <div class="modal-content" id="modal-content"></div>
             <div class="track-info" id="track-info"></div>
         </div>
     </div>
@@ -148,6 +156,7 @@
 
         let currentTrackIndex = -1;
         let currentTrackList = [];
+        let isTransitioning = false;
 
         function createCard(track, index, list) {
             const card = document.createElement("div");
@@ -173,23 +182,37 @@
         }
 
         function playTrack(track) {
-            document.getElementById("modal-content").innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+            const content = document.getElementById("modal-content");
+            content.classList.add("fade-out");
+            setTimeout(function() {
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+                content.classList.remove("fade-out");
+            }, 250);
             document.getElementById("track-info").textContent = track.title;
             document.getElementById("video-modal").classList.add("active");
+            document.body.style.overflow = "hidden";
         }
 
         function prevTrack() {
-            if (currentTrackIndex > 0) {
-                currentTrackIndex--;
-                playTrack(currentTrackList[currentTrackIndex]);
-            }
+            if (isTransitioning || currentTrackIndex <= 0) return;
+            isTransitioning = true;
+            currentTrackIndex--;
+            playTrack(currentTrackList[currentTrackIndex]);
+            setTimeout(function() { isTransitioning = false; }, 400);
         }
 
         function nextTrack() {
-            if (currentTrackIndex < currentTrackList.length - 1) {
-                currentTrackIndex++;
-                playTrack(currentTrackList[currentTrackIndex]);
-            }
+            if (isTransitioning || currentTrackIndex >= currentTrackList.length - 1) return;
+            isTransitioning = true;
+            currentTrackIndex++;
+            playTrack(currentTrackList[currentTrackIndex]);
+            setTimeout(function() { isTransitioning = false; }, 400);
+        }
+
+        function closeModal() {
+            document.getElementById("video-modal").classList.remove("active");
+            document.getElementById("modal-content").innerHTML = "";
+            document.body.style.overflow = "";
         }
 
         function buildGMN() {
@@ -232,12 +255,9 @@
         document.addEventListener("DOMContentLoaded", function() {
             buildGMN();
             buildDMR();
-            document.getElementById("modal-close").addEventListener("click", function() {
-                document.getElementById("video-modal").classList.remove("active");
-                document.getElementById("modal-content").innerHTML = "";
-            });
+            document.getElementById("modal-close").addEventListener("click", closeModal);
             document.getElementById("video-modal").addEventListener("click", function(e) {
-                if (e.target === this) { this.classList.remove("active"); document.getElementById("modal-content").innerHTML = ""; }
+                if (e.target === this) closeModal();
             });
             document.getElementById("nav-prev").addEventListener("click", function(e) { e.stopPropagation(); prevTrack(); });
             document.getElementById("nav-next").addEventListener("click", function(e) { e.stopPropagation(); nextTrack(); });
@@ -245,7 +265,7 @@
                 if (!document.getElementById("video-modal").classList.contains("active")) return;
                 if (e.key === "ArrowLeft") prevTrack();
                 if (e.key === "ArrowRight") nextTrack();
-                if (e.key === "Escape") { document.getElementById("video-modal").classList.remove("active"); document.getElementById("modal-content").innerHTML = ""; }
+                if (e.key === "Escape") closeModal();
             });
         });
     </script>
