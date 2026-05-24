@@ -153,6 +153,7 @@
             {title:"VAYATELA..",id:"320086013",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"}
         ];
         let currentTrackIndex = -1, currentTrackList = [], isTransitioning = false;
+        const allTracks = gmnTracks.concat(dmrTracks);
         function createCard(track, index, list) {
             const card = document.createElement("div");
             card.className = "video-card";
@@ -161,7 +162,7 @@
             const play = document.createElement("div"); play.className = "play-icon";
             const cardTitle = document.createElement("p"); cardTitle.className = "card-title"; cardTitle.textContent = track.title;
             card.appendChild(img); card.appendChild(play); card.appendChild(cardTitle);
-            card.addEventListener("click", function() { currentTrackList = list; currentTrackIndex = index; playTrack(track); });
+            card.addEventListener("click", function() { currentTrackList = allTracks; if (list === gmnTracks) currentTrackIndex = index; else currentTrackIndex = gmnTracks.length + index; playTrack(track); });
             return card;
         }
         function playTrack(track) {
@@ -176,13 +177,13 @@
             document.body.style.overflow = "hidden";
         }
         function prevTrack() {
-            if (isTransitioning || currentTrackIndex <= 0) return;
-            isTransitioning = true; currentTrackIndex--; playTrack(currentTrackList[currentTrackIndex]);
+            if (isTransitioning) return;
+            isTransitioning = true; currentTrackIndex = currentTrackIndex <= 0 ? allTracks.length - 1 : currentTrackIndex - 1; playTrack(currentTrackList[currentTrackIndex]);
             setTimeout(function() { isTransitioning = false; }, 400);
         }
         function nextTrack() {
-            if (isTransitioning || currentTrackIndex >= currentTrackList.length - 1) return;
-            isTransitioning = true; currentTrackIndex++; playTrack(currentTrackList[currentTrackIndex]);
+            if (isTransitioning) return;
+            isTransitioning = true; currentTrackIndex = currentTrackIndex >= allTracks.length - 1 ? 0 : currentTrackIndex + 1; playTrack(currentTrackList[currentTrackIndex]);
             setTimeout(function() { isTransitioning = false; }, 400);
         }
         function closeModal() {
