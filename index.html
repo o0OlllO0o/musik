@@ -91,32 +91,31 @@
         </div>
     </footer>
     <script>
-        // 24 tracks GMN con imágenes reales
         const gmnTracks = [
-            {title:"GMNoise Suite 01",id:"350657683",img:"https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg"},
             {title:"Orchestratest15exp",id:"336277977",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
             {title:"Orchestratest14exp",id:"336277964",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
             {title:"Orchestratest10subexp",id:"336277937",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
             {title:"Orchestratest4",id:"336277903",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
             {title:"Orchestratest3",id:"336277888",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
-            {title:"La Música De Las Renovables",id:"218940955",img:"https://i1.sndcdn.com/artworks-000218940955-b7p25o-t500x500.jpg"},
             {title:"Hg38GRCh38",id:"277564374",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
             {title:"Human Polyomavirus 9",id:"277564371",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
             {title:"Human Protein",id:"277562810",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
             {title:"Saccharomyces Cerevisiae",id:"277562808",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
-            {title:"GMNoise Suite 0",id:"336277977",img:"https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg"},
-            {title:"Sample - 13",id:"336277964",img:"https://i1.sndcdn.com/artworks-000163973094-pplqk2-t500x500.jpg"},
-            {title:"JUMJUM",id:"336277937",img:"https://i1.sndcdn.com/artworks-000163968001-zyip4z-t500x500.jpg"},
+            {title:"La Música De Las Renovables",id:"218940955",img:"https://i1.sndcdn.com/artworks-000218940955-b7p25o-t500x500.jpg"},
+            {title:"GMNoise Suite 01",id:"350657683",img:"https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg"},
+            {title:"GMNoise Suite 0",id:"274733117",img:"https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg"},
+            {title:"Sample - 13",id:"265367587",img:"https://i1.sndcdn.com/artworks-000163973094-pplqk2-t500x500.jpg"},
+            {title:"JUMJUM",id:"265360985",img:"https://i1.sndcdn.com/artworks-000163968001-zyip4z-t500x500.jpg"},
             {title:"01 - Subbyng",id:"265096332",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
             {title:"02 - Paranadaparanoia",id:"265096331",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
             {title:"03 - Ultratrance",id:"265096330",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
             {title:"04 - Upsssnotgoodb",id:"265096327",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
             {title:"05 - Reelonga",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
-            {title:"06 - Upssnotgooda",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
-            {title:"07 - Agonic Words",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
-            {title:"08 - Posttrance",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
-            {title:"09 - Mijowa2",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
-            {title:"10 - Jujuju2 TRUE",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"}
+            {title:"06 - Upssnotgooda",id:"265096320",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"07 - Agonic Words",id:"265096319",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"08 - Posttrance",id:"265096318",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"09 - Mijowa2",id:"265096317",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"10 - Jujuju2 TRUE",id:"265096316",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"}
         ];
 
         const dmrTracks = [
@@ -163,9 +162,11 @@
             if (!container) return;
             container.innerHTML = "";
             const groups = [
-                {name:"Orchestratest",tracks:[0,1,2,3,4,5]},
-                {name:"Cromosomica",tracks:[6,7,8,9,10]},
-                {name:"Singles",tracks:[11,12,13]},
+                {name:"Orchestratest",tracks:[0,1,2,3,4]},
+                {name:"Cromosomica",tracks:[5,6,7,8]},
+                {name:"La Música De Las Renovables",tracks:[9]},
+                {name:"GMNoise Suites",tracks:[10,11]},
+                {name:"Singles",tracks:[12,13]},
                 {name:"Significant Project",tracks:[14,15,16,17,18,19,20,21,22,23]}
             ];
             groups.forEach(function(group) {
