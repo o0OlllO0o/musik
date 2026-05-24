@@ -1,6 +1,3 @@
-// =============================================
-// TRACKS REALES DE GOODMAKINGNOISE (14 tracks)
-// =============================================
 const tracksGMN = [
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277977&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277966&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
@@ -11,11 +8,11 @@ const tracksGMN = [
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564371&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564360&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564382&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657683&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657684&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657685&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657686&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657687&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265096332&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265096331&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265096330&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265096329&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265096328&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
 ];
 
 const titlesGMN = [
@@ -26,9 +23,6 @@ const titlesGMN = [
     '04 - Upsssnotgoodb', '05 - Reelonga'
 ];
 
-// =============================================
-// TRACKS REALES DE DEEPMAKINGRHYTHM (14 tracks - IDs CORRECTOS)
-// =============================================
 const tracksDMR = [
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086031&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086030&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
@@ -61,18 +55,13 @@ function crearTrackWidget(url, title, index) {
     iframe.allow = 'autoplay; encrypted-media';
     iframe.loading = 'lazy';
     iframe.title = title;
-    iframe.style.animationDelay = (index * 0.05) + 's';
-    
     const wrapper = document.createElement('div');
     wrapper.className = 'track-item';
-    
     const titleEl = document.createElement('p');
     titleEl.className = 'track-title';
     titleEl.textContent = title;
-    
     wrapper.appendChild(iframe);
     wrapper.appendChild(titleEl);
-    
     return wrapper;
 }
 
@@ -80,7 +69,6 @@ function cargarTracks(containerId, urls, titles) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = '';
-    
     urls.forEach(function(url, i) {
         container.appendChild(crearTrackWidget(url, titles[i], i));
     });
@@ -89,12 +77,4 @@ function cargarTracks(containerId, urls, titles) {
 document.addEventListener('DOMContentLoaded', function() {
     cargarTracks('tracks-gmn', tracksGMN, titlesGMN);
     cargarTracks('tracks-dmr', tracksDMR, titlesDMR);
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
 });
