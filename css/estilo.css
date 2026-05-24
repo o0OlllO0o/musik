@@ -224,3 +224,29 @@ body {
     .hero-logo { width: 80px; height: 80px; }
     .nav-container { padding: 0 1rem; }
 }
+
+/* Reproductor sticky inferior */
+.sticky-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--accent);
+    padding: 0.5rem 2rem;
+    z-index: 999;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+.sticky-player-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+.sticky-player-content p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
