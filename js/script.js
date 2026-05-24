@@ -1,83 +1,97 @@
 // =============================================
-// TRACKS REALES DE GOODMAKINGNOISE (10 tracks)
+// TRACKS REALES DE GOODMAKINGNOISE (14 tracks)
 // =============================================
 const tracksGMN = [
-    { id: '350657683', title: 'GMNoise Suite 01' },
-    { id: '336277977', title: 'Orchestratest15exp' },
-    { id: '336277966', title: 'Orchestratest14exp' },
-    { id: '336277955', title: 'Orchestratest10subexp' },
-    { id: '336277944', title: 'Orchestratest4' },
-    { id: '336277888', title: 'Orchestratest3' },
-    { id: '277564382', title: 'La Música De Las Renovables' },
-    { id: '277564380', title: 'Hg38GRCh38' },
-    { id: '277564371', title: 'Human Polyomavirus 9' },
-    { id: '277564360', title: 'Human Protein' }
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277977&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277966&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277955&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277944&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/336277888&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564380&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564371&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564360&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277564382&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657683&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657684&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657685&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657686&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/350657687&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
+];
+
+const titlesGMN = [
+    'Orchestratest15exp', 'Orchestratest14exp', 'Orchestratest10subexp',
+    'Orchestratest4', 'Orchestratest3', 'Hg38GRCh38',
+    'Human Polyomavirus 9', 'Human Protein', 'Saccharomyces Cerevisiae',
+    '01 - Subbyng', '02 - Paranadaparanoia', '03 - Ultratrance',
+    '04 - Upsssnotgoodb', '05 - Reelonga'
 ];
 
 // =============================================
-// TRACKS REALES DE DEEPMAKINGRHYTHM (10 tracks)
+// TRACKS REALES DE DEEPMAKINGRHYTHM (14 tracks)
 // =============================================
 const tracksDMR = [
-    { id: '320086031', title: 'Acousticmetall' },
-    { id: '320086030', title: 'Amosavore' },
-    { id: '320086029', title: 'Auxiliarredux' },
-    { id: '320086028', title: 'Experimentosdesdelascloacas' },
-    { id: '320086027', title: 'Feijo' },
-    { id: '320086026', title: 'Hard T43echoampli' },
-    { id: '320086025', title: 'Nohaypodonde' },
-    { id: '320086024', title: 'Psss' },
-    { id: '320086023', title: 'Riopsss2' },
-    { id: '320086022', title: 'Sireasonsi' }
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086031&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086030&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086029&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086028&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086027&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086026&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086025&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086024&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086023&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086022&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086021&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086020&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086019&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086018&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
+];
+
+const titlesDMR = [
+    'Acousticmetall', 'Amosavore', 'Auxiliarredux', 'Experimentosdesdelascloacas',
+    'Feijo', 'Hard T43echoampli', 'Nohaypodonde...', 'Psss', 'Riopsss2',
+    'Sireasonsi', 'Tremendo', 'Untitled', 'Vateavore', 'VAYATELA..'
 ];
 
 // =============================================
-// FUNCIÓN PARA CREAR WIDGETS INDIVIDUALES
+// FUNCIONES
 // =============================================
-function crearWidgetIndividual(track, index) {
+function crearTrackWidget(url, title, index) {
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true';
+    iframe.src = url;
     iframe.width = '100%';
     iframe.height = '120';
     iframe.frameBorder = 'no';
     iframe.allow = 'autoplay; encrypted-media';
     iframe.loading = 'lazy';
-    iframe.title = track.title;
-    iframe.style.animationDelay = (index * 0.1) + 's';
+    iframe.title = title;
+    iframe.style.animationDelay = (index * 0.05) + 's';
     
     const wrapper = document.createElement('div');
     wrapper.className = 'track-item';
     
-    const title = document.createElement('p');
-    title.className = 'track-title';
-    title.textContent = track.title;
+    const titleEl = document.createElement('p');
+    titleEl.className = 'track-title';
+    titleEl.textContent = title;
     
     wrapper.appendChild(iframe);
-    wrapper.appendChild(title);
+    wrapper.appendChild(titleEl);
     
     return wrapper;
 }
 
-function cargarTracksIndividuales(containerId, tracks) {
+function cargarTracks(containerId, urls, titles) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = '';
     
-    if (tracks.length === 0) {
-        container.innerHTML = '<p class="no-tracks">No hay tracks disponibles.</p>';
-        return;
-    }
-    
-    tracks.forEach(function(track, i) {
-        container.appendChild(crearWidgetIndividual(track, i));
+    urls.forEach(function(url, i) {
+        container.appendChild(crearTrackWidget(url, titles[i], i));
     });
 }
 
-// =============================================
-// INICIALIZAR CUANDO EL DOM ESTÉ LISTO
-// =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    cargarTracksIndividuales('tracks-gmn', tracksGMN);
-    cargarTracksIndividuales('tracks-dmr', tracksDMR);
+    cargarTracks('tracks-gmn', tracksGMN, titlesGMN);
+    cargarTracks('tracks-dmr', tracksDMR, titlesDMR);
 });
 
 // Smooth scroll
