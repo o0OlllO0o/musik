@@ -211,7 +211,7 @@
             container.innerHTML = "";
             const grid = document.createElement("div"); grid.className = "day-videos";
             dmrTracks.forEach(function(track, i) { grid.appendChild(createCard(track, i, dmrTracks)); });
-            container.appendChild(grid);
+            container.appendChild(grid); setTimeout(fitAllTitles, 200); setTimeout(fitAllTitles, 600);
         }
         document.addEventListener("DOMContentLoaded", function() {
             buildGMN(); buildDMR();
