@@ -13,9 +13,21 @@
     <style>
         .day-group { margin-bottom: 3rem; }
         .day-title { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; }
-        .day-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-        .track-item iframe { height: 180px; }
-        @media (max-width: 600px) { .day-videos { grid-template-columns: 1fr; } }
+        .day-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .video-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .video-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        .video-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .video-card .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 50px; height: 50px; background: rgba(255,85,0,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .video-card .play-icon::after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent white; margin-left: 3px; }
+        .video-card:hover .play-icon { background: #ff3300; }
+        .video-card .card-title { padding: 0.8rem 1rem; color: var(--text-secondary); font-size: 0.85rem; margin: 0; border-top: 1px solid var(--border); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { width: 95%; max-width: 1200px; aspect-ratio: 16/9; }
+        .modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+        .modal-close { position: absolute; top: 1rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10000; transition: color 0.3s; }
+        .modal-close:hover { color: var(--accent); }
+        @media (max-width: 600px) { .day-videos { grid-template-columns: 1fr; } .modal-content { width: 100%; } }
     </style>
 </head>
 <body>
@@ -54,6 +66,10 @@
             <div id="tracks-stereocastro"></div>
         </section>
     </main>
+    <div class="modal" id="video-modal">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-content" id="modal-content"></div>
+    </div>
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2024 GoodMakingNoise & DeepMakingRhythm</p>
@@ -65,16 +81,16 @@
         </div>
     </footer>
     <script>
-        const videos=[{title:"Stereocastro day6_t1",id:"U6GlS_ciaVs",day:"Day 6"},{title:"Stereocastro day6_t2",id:"TeEOe5ExCDA",day:"Day 6"},{title:"Stereocastro day12_t3",id:"GoHzt-PgzPk",day:"Day 12"},{title:"Stereocastro day19",id:"3JHUEKB88fw",day:"Day 19"},{title:"Stereocastro day22_t1",id:"8TQqy1kYojE",day:"Day 22"},{title:"Stereocastro day22_t2",id:"Mg9n7lojtf4",day:"Day 22"},{title:"Stereocastro day22_t3",id:"eTGUV6TL_64",day:"Day 22"},{title:"Stereocastro day25_t1",id:"6-0oRIKhZUM",day:"Day 25"},{title:"Stereocastro day25_t2",id:"AS0vs1wGOj4",day:"Day 25"},{title:"Stereocastro day25_t3",id:"z7LUOAkgkOQ",day:"Day 25"},{title:"Stereocastro day26_t1",id:"y79beTuy_aY",day:"Day 26"},{title:"Stereocastro day26_t2",id:"GfUcYqDR7vM",day:"Day 26"},{title:"Stereocastro day27",id:"cgjY83b7h9M",day:"Day 27"},{title:"Stereocastro day31_t1",id:"oo2eSI1VNG8",day:"Day 31"},{title:"Stereocastro day31_t2",id:"KlKXEZhTYTU",day:"Day 31"},{title:"Stereocastro day31_t3",id:"jgClBhHFu88",day:"Day 31"}];
+        const videos=[{title:"day6_t1",id:"U6GlS_ciaVs",day:"Day 6"},{title:"day6_t2",id:"TeEOe5ExCDA",day:"Day 6"},{title:"day12_t3",id:"GoHzt-PgzPk",day:"Day 12"},{title:"day19",id:"3JHUEKB88fw",day:"Day 19"},{title:"day22_t1",id:"8TQqy1kYojE",day:"Day 22"},{title:"day22_t2",id:"Mg9n7lojtf4",day:"Day 22"},{title:"day22_t3",id:"eTGUV6TL_64",day:"Day 22"},{title:"day25_t1",id:"6-0oRIKhZUM",day:"Day 25"},{title:"day25_t2",id:"AS0vs1wGOj4",day:"Day 25"},{title:"day25_t3",id:"z7LUOAkgkOQ",day:"Day 25"},{title:"day26_t1",id:"y79beTuy_aY",day:"Day 26"},{title:"day26_t2",id:"GfUcYqDR7vM",day:"Day 26"},{title:"day27",id:"cgjY83b7h9M",day:"Day 27"},{title:"day31_t1",id:"oo2eSI1VNG8",day:"Day 31"},{title:"day31_t2",id:"KlKXEZhTYTU",day:"Day 31"},{title:"day31_t3",id:"jgClBhHFu88",day:"Day 31"}];
         document.addEventListener("DOMContentLoaded",function(){
             const container=document.getElementById("tracks-stereocastro");
+            const modal=document.getElementById("video-modal");
+            const modalContent=document.getElementById("modal-content");
+            const modalClose=document.getElementById("modal-close");
             if(!container)return;
             container.innerHTML="";
             const days={};
-            videos.forEach(function(v){
-                if(!days[v.day])days[v.day]=[];
-                days[v.day].push(v);
-            });
+            videos.forEach(function(v){if(!days[v.day])days[v.day]=[];days[v.day].push(v);});
             Object.keys(days).forEach(function(day){
                 const group=document.createElement("div");
                 group.className="day-group";
@@ -85,27 +101,31 @@
                 const grid=document.createElement("div");
                 grid.className="day-videos";
                 days[day].forEach(function(v){
-                    const w=document.createElement("div");
-                    w.className="track-item";
-                    const f=document.createElement("iframe");
-                    f.src="https://www.youtube.com/embed/"+v.id;
-                    f.width="100%";
-                    f.height="180";
-                    f.frameBorder="no";
-                    f.allow="autoplay; encrypted-media";
-                    f.allowFullscreen=true;
-                    f.loading="lazy";
-                    f.title=v.title;
-                    const t=document.createElement("p");
-                    t.className="track-title";
-                    t.textContent=v.title;
-                    w.appendChild(f);
-                    w.appendChild(t);
-                    grid.appendChild(w);
+                    const card=document.createElement("div");
+                    card.className="video-card";
+                    const img=document.createElement("img");
+                    img.src="https://img.youtube.com/vi/"+v.id+"/mqdefault.jpg";
+                    img.alt=v.title;
+                    img.loading="lazy";
+                    const play=document.createElement("div");
+                    play.className="play-icon";
+                    const cardTitle=document.createElement("p");
+                    cardTitle.className="card-title";
+                    cardTitle.textContent=v.title;
+                    card.appendChild(img);
+                    card.appendChild(play);
+                    card.appendChild(cardTitle);
+                    card.addEventListener("click",function(){
+                        modalContent.innerHTML='<iframe src="https://www.youtube.com/embed/'+v.id+'?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+                        modal.classList.add("active");
+                    });
+                    grid.appendChild(card);
                 });
                 group.appendChild(grid);
                 container.appendChild(group);
             });
+            modalClose.addEventListener("click",function(){modal.classList.remove("active");modalContent.innerHTML="";});
+            modal.addEventListener("click",function(e){if(e.target===modal){modal.classList.remove("active");modalContent.innerHTML="";}});
         });
     </script>
 </body>
