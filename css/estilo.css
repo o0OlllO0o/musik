@@ -296,3 +296,9 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.card-title {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
