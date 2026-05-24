@@ -27,7 +27,7 @@ const titlesGMN = [
 ];
 
 // =============================================
-// TRACKS REALES DE DEEPMAKINGRHYTHM (14 tracks)
+// TRACKS REALES DE DEEPMAKINGRHYTHM (14 tracks - IDs CORRECTOS)
 // =============================================
 const tracksDMR = [
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086031&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
@@ -40,10 +40,10 @@ const tracksDMR = [
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086024&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086023&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
     'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086022&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086021&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086020&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086019&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
-    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086018&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086017&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086016&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086015&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true',
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/320086014&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true'
 ];
 
 const titlesDMR = [
@@ -52,9 +52,6 @@ const titlesDMR = [
     'Sireasonsi', 'Tremendo', 'Untitled', 'Vateavore', 'VAYATELA..'
 ];
 
-// =============================================
-// FUNCIONES
-// =============================================
 function crearTrackWidget(url, title, index) {
     const iframe = document.createElement('iframe');
     iframe.src = url;
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarTracks('tracks-dmr', tracksDMR, titlesDMR);
 });
 
-// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
