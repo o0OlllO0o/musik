@@ -25,7 +25,7 @@
         .modal.active { display: flex; }
         .modal-content { width: 95%; max-width: 1200px; aspect-ratio: 16/9; }
         .modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
-        .modal-close { position: absolute; top: 1rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10000; transition: color 0.3s; }
+        .modal-close { position: absolute; top: 1rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10000; }
         .modal-close:hover { color: var(--accent); }
         @media (max-width: 600px) { .day-videos { grid-template-columns: 1fr; } .modal-content { width: 100%; } }
     </style>
@@ -59,9 +59,7 @@
                 <div class="canal-info">
                     <h2>GoodMakingNoise</h2>
                     <p class="canal-desc">Texturas sonoras, paisajes ambientales y experimentación electrónica.</p>
-                    <div class="canal-links">
-                        <a href="https://soundcloud.com/goodmakingnoise" target="_blank" rel="noopener" class="soundcloud-link">🎧 SoundCloud</a>
-                    </div>
+                    <div class="canal-links"><a href="https://soundcloud.com/goodmakingnoise" target="_blank" rel="noopener" class="soundcloud-link">🎧 SoundCloud</a></div>
                 </div>
             </div>
             <div id="gmn-gallery"></div>
@@ -72,9 +70,7 @@
                 <div class="canal-info">
                     <h2>DeepMakingRhythm</h2>
                     <p class="canal-desc">Ritmos profundos, bajos envolventes y beats hipnóticos.</p>
-                    <div class="canal-links">
-                        <a href="https://soundcloud.com/deepmakingrhythm" target="_blank" rel="noopener" class="soundcloud-link">🎧 SoundCloud</a>
-                    </div>
+                    <div class="canal-links"><a href="https://soundcloud.com/deepmakingrhythm" target="_blank" rel="noopener" class="soundcloud-link">🎧 SoundCloud</a></div>
                 </div>
             </div>
             <div id="dmr-gallery"></div>
@@ -94,56 +90,59 @@
             </div>
         </div>
     </footer>
-    <script src="js/script.js"></script>
     <script>
-        // IDs guardados correctamente
+        // 24 tracks GMN con imágenes reales
         const gmnTracks = [
-            { title: "Orchestratest15exp", id: "336277977" },
-            { title: "Orchestratest14exp", id: "336277964" },
-            { title: "Orchestratest10subexp", id: "336277937" },
-            { title: "Orchestratest4", id: "336277903" },
-            { title: "Orchestratest3", id: "336277888" },
-            { title: "Hg38GRCh38", id: "277564374" },
-            { title: "Human Polyomavirus 9", id: "277564371" },
-            { title: "Human Protein", id: "277562810" },
-            { title: "Saccharomyces Cerevisiae", id: "277562808" },
-            { title: "01 - Subbyng", id: "265096332" },
-            { title: "02 - Paranadaparanoia", id: "265096331" },
-            { title: "03 - Ultratrance", id: "265096330" },
-            { title: "04 - Upsssnotgoodb", id: "265096327" },
-            { title: "05 - Reelonga", id: "265096325" }
-        ];
-        const dmrTracks = [
-            { title: "Acousticmetall", id: "320086031" },
-            { title: "Amosavore", id: "320086030" },
-            { title: "Auxiliarredux", id: "320086029" },
-            { title: "Experimentosdesdelascloacas", id: "320086028" },
-            { title: "Feijo", id: "320086026" },
-            { title: "Hard T43echoampli", id: "320086025" },
-            { title: "Nohaypodonde...", id: "320086024" },
-            { title: "Psss", id: "320086022" },
-            { title: "Riopsss2", id: "320086021" },
-            { title: "Sireasonsi", id: "320086022" },
-            { title: "Tremendo", id: "320086017" },
-            { title: "Untitled", id: "320086015" },
-            { title: "Vateavore", id: "320086014" },
-            { title: "VAYATELA..", id: "320086013" }
+            {title:"GMNoise Suite 01",id:"350657683",img:"https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg"},
+            {title:"Orchestratest15exp",id:"336277977",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest14exp",id:"336277964",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest10subexp",id:"336277937",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest4",id:"336277903",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"Orchestratest3",id:"336277888",img:"https://i1.sndcdn.com/artworks-000236697063-835my0-t500x500.jpg"},
+            {title:"La Música De Las Renovables",id:"218940955",img:"https://i1.sndcdn.com/artworks-000218940955-b7p25o-t500x500.jpg"},
+            {title:"Hg38GRCh38",id:"277564374",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Human Polyomavirus 9",id:"277564371",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Human Protein",id:"277562810",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"Saccharomyces Cerevisiae",id:"277562808",img:"https://i1.sndcdn.com/artworks-000175627741-y2zqo8-t500x500.jpg"},
+            {title:"GMNoise Suite 0",id:"336277977",img:"https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg"},
+            {title:"Sample - 13",id:"336277964",img:"https://i1.sndcdn.com/artworks-000163973094-pplqk2-t500x500.jpg"},
+            {title:"JUMJUM",id:"336277937",img:"https://i1.sndcdn.com/artworks-000163968001-zyip4z-t500x500.jpg"},
+            {title:"01 - Subbyng",id:"265096332",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"02 - Paranadaparanoia",id:"265096331",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"03 - Ultratrance",id:"265096330",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"04 - Upsssnotgoodb",id:"265096327",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"05 - Reelonga",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"06 - Upssnotgooda",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"07 - Agonic Words",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"08 - Posttrance",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"09 - Mijowa2",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"},
+            {title:"10 - Jujuju2 TRUE",id:"265096325",img:"https://i1.sndcdn.com/artworks-000163728935-wyhlcs-t500x500.jpg"}
         ];
 
-        const groupsGMN = [
-            { name: "Orchestratest", tracks: [0,1,2,3,4] },
-            { name: "Cromosomica", tracks: [5,6,7,8] },
-            { name: "Significant Project", tracks: [9,10,11,12,13] }
+        const dmrTracks = [
+            {title:"Acousticmetall",id:"320086031",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Amosavore",id:"320086030",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Auxiliarredux",id:"320086029",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Experimentosdesdelascloacas",id:"320086028",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Feijo",id:"320086026",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Hard T43echoampli",id:"320086025",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Nohaypodonde...",id:"320086024",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Psss",id:"320086022",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Riopsss2",id:"320086021",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Sireasonsi",id:"320086022",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Tremendo",id:"320086017",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Untitled",id:"320086015",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"Vateavore",id:"320086014",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"},
+            {title:"VAYATELA..",id:"320086013",img:"https://i1.sndcdn.com/avatars-000310644396-bpukuu-t500x500.jpg"}
         ];
 
         function createCard(track) {
             const card = document.createElement("div");
             card.className = "video-card";
             const img = document.createElement("img");
-            img.src = "https://i1.sndcdn.com/artworks-"+track.id+"-t500x500.jpg";
+            img.src = track.img;
             img.alt = track.title;
             img.loading = "lazy";
-            img.onerror = function() { this.src = "https://i1.sndcdn.com/avatars-000225616365-29s6bi-t500x500.jpg"; };
             const play = document.createElement("div");
             play.className = "play-icon";
             const cardTitle = document.createElement("p");
@@ -153,16 +152,22 @@
             card.appendChild(play);
             card.appendChild(cardTitle);
             card.addEventListener("click", function() {
-                document.getElementById("modal-content").innerHTML = '<iframe width="100%" height="300" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+                document.getElementById("modal-content").innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
                 document.getElementById("video-modal").classList.add("active");
             });
             return card;
         }
 
-        function buildGallery(containerId, tracks, groups) {
-            const container = document.getElementById(containerId);
+        function buildGMN() {
+            const container = document.getElementById("gmn-gallery");
             if (!container) return;
             container.innerHTML = "";
+            const groups = [
+                {name:"Orchestratest",tracks:[0,1,2,3,4,5]},
+                {name:"Cromosomica",tracks:[6,7,8,9,10]},
+                {name:"Singles",tracks:[11,12,13]},
+                {name:"Significant Project",tracks:[14,15,16,17,18,19,20,21,22,23]}
+            ];
             groups.forEach(function(group) {
                 const groupDiv = document.createElement("div");
                 groupDiv.className = "day-group";
@@ -172,38 +177,31 @@
                 groupDiv.appendChild(title);
                 const grid = document.createElement("div");
                 grid.className = "day-videos";
-                group.tracks.forEach(function(i) {
-                    grid.appendChild(createCard(tracks[i]));
-                });
+                group.tracks.forEach(function(i) { grid.appendChild(createCard(gmnTracks[i])); });
                 groupDiv.appendChild(grid);
                 container.appendChild(groupDiv);
             });
         }
 
-        function buildDMRGallery() {
+        function buildDMR() {
             const container = document.getElementById("dmr-gallery");
             if (!container) return;
             container.innerHTML = "";
             const grid = document.createElement("div");
             grid.className = "day-videos";
-            dmrTracks.forEach(function(track) {
-                grid.appendChild(createCard(track));
-            });
+            dmrTracks.forEach(function(track) { grid.appendChild(createCard(track)); });
             container.appendChild(grid);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            buildGallery("gmn-gallery", gmnTracks, groupsGMN);
-            buildDMRGallery();
+            buildGMN();
+            buildDMR();
             document.getElementById("modal-close").addEventListener("click", function() {
                 document.getElementById("video-modal").classList.remove("active");
                 document.getElementById("modal-content").innerHTML = "";
             });
             document.getElementById("video-modal").addEventListener("click", function(e) {
-                if (e.target === this) {
-                    this.classList.remove("active");
-                    document.getElementById("modal-content").innerHTML = "";
-                }
+                if (e.target === this) { this.classList.remove("active"); document.getElementById("modal-content").innerHTML = ""; }
             });
         });
     </script>
