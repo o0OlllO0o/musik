@@ -23,12 +23,10 @@
         .video-card .card-title { padding: 0.8rem 1rem; color: var(--text-secondary); font-size: 0.85rem; margin: 0; border-top: 1px solid var(--border); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 9999; align-items: center; justify-content: center; }
         .modal.active { display: flex; }
-        .modal-container { position: relative; width: 90%; max-width: 1000px; }
+        .modal-container { position: relative; width: 95%; max-width: 1200px; }
         .modal-content { width: 100%; aspect-ratio: 16/9; transition: opacity 0.3s ease; }
         .modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
         .modal-content.fade-out { opacity: 0; }
-        .modal-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10001; transition: color 0.3s; }
-        .modal-close:hover { color: var(--accent); }
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3.5rem; color: #fff; cursor: pointer; z-index: 10001; user-select: none; transition: color 0.3s, background 0.3s; width: 56px; height: 90px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); border-radius: 8px; }
         .nav-arrow:hover { color: var(--accent); background: rgba(0,0,0,0.6); }
         .nav-prev { left: -70px; }
@@ -91,8 +89,6 @@
     </main>
     <div class="modal" id="video-modal">
         <div class="modal-container">
-            <span class="modal-close" id="modal-close">&times;</span>
-            <span class="nav-arrow nav-prev" id="nav-prev">‹</span>
             <span class="nav-arrow nav-next" id="nav-next">›</span>
             <div class="modal-content" id="modal-content"></div>
             <div class="track-info" id="track-info"></div>
@@ -255,8 +251,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             buildGMN();
             buildDMR();
-            document.getElementById("modal-close").addEventListener("click", closeModal);
-            document.getElementById("video-modal").addEventListener("click", function(e) {
                 if (e.target === this) closeModal();
             });
             document.getElementById("nav-prev").addEventListener("click", function(e) { e.stopPropagation(); prevTrack(); });
