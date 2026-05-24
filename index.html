@@ -150,11 +150,6 @@
             {title:"VAYATELA..",id:"320086013",img:"img/avatar-dmr.jpg"}
         ];
         let currentTrackIndex = -1, currentTrackList = [], isTransitioning = false;
-        let currentPlaylist = playlists[0];
-        const playlists = [
-            { title: "GoodMakingNoise", id: "2242138883" },
-            { title: "DeepMakingRhythm", id: "319288256" }
-        ];
         function createCard(track, index, list) {
             const card = document.createElement("div");
             card.className = "video-card";
@@ -163,7 +158,7 @@
             const play = document.createElement("div"); play.className = "play-icon";
             const cardTitle = document.createElement("p"); cardTitle.className = "card-title"; cardTitle.textContent = track.title;
             card.appendChild(img); card.appendChild(play); card.appendChild(cardTitle);
-            card.addEventListener("click", function() { currentPlaylist = (list === gmnTracks) ? playlists[0] : playlists[1]; playPlaylist(currentPlaylist); });
+            card.addEventListener("click", function() { currentTrackList = list; currentTrackIndex = index; playTrack(track); });
             return card;
         }
         function playTrack(track) {
@@ -177,25 +172,14 @@
             document.getElementById("video-modal").classList.add("active");
             document.body.style.overflow = "hidden";
         }
-        function playPlaylist(playlist) {
-            const content = document.getElementById("modal-content");
-            content.classList.add("fade-out");
-            setTimeout(function() {
-                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A'+playlist.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
-                content.classList.remove("fade-out");
-            }, 250);
-            document.getElementById("track-info").textContent = playlist.title;
-            document.getElementById("video-modal").classList.add("active");
-            document.body.style.overflow = "hidden";
-        }
         function prevTrack() {
-            if (isTransitioning) return;
-            isTransitioning = true; currentPlaylist = (currentPlaylist.id === "2242138883") ? playlists[1] : playlists[0]; playPlaylist(currentPlaylist);
+            if (isTransitioning || currentTrackIndex <= 0) return;
+            isTransitioning = true; currentTrackIndex--; playTrack(currentTrackList[currentTrackIndex]);
             setTimeout(function() { isTransitioning = false; }, 400);
         }
         function nextTrack() {
-            if (isTransitioning) return;
-            isTransitioning = true; currentPlaylist = (currentPlaylist.id === "2242138883") ? playlists[1] : playlists[0]; playPlaylist(currentPlaylist);
+            if (isTransitioning || currentTrackIndex >= currentTrackList.length - 1) return;
+            isTransitioning = true; currentTrackIndex++; playTrack(currentTrackList[currentTrackIndex]);
             setTimeout(function() { isTransitioning = false; }, 400);
         }
         function closeModal() {
