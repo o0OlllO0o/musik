@@ -10,6 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .day-group { margin-bottom: 3rem; }
+        .day-title { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; }
+        .day-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .track-item iframe { height: 180px; }
+        @media (max-width: 600px) { .day-videos { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -37,14 +44,14 @@
             <div class="canal-header">
                 <div class="canal-info">
                     <h2>Stereocastro</h2>
-                    <p class="canal-desc">Sesiones y experimentos sonoros. Ordenados por día.</p>
+                    <p class="canal-desc">Sesiones y experimentos sonoros agrupados por día.</p>
                     <div class="canal-links">
                         <a href="https://www.youtube.com/@stereocastro" target="_blank" rel="noopener" class="soundcloud-link">📺 YouTube</a>
                     </div>
                 </div>
             </div>
             <h3 class="tracks-title">Vídeos</h3>
-            <div class="tracks-grid" id="tracks-stereocastro"></div>
+            <div id="tracks-stereocastro"></div>
         </section>
     </main>
     <footer class="footer">
@@ -58,29 +65,46 @@
         </div>
     </footer>
     <script>
-        const videos=[{title:"Stereocastro day6_t1",id:"U6GlS_ciaVs"},{title:"Stereocastro day6_t2",id:"TeEOe5ExCDA"},{title:"Stereocastro day12_t3",id:"GoHzt-PgzPk"},{title:"Stereocastro day19",id:"3JHUEKB88fw"},{title:"Stereocastro day22_t1",id:"8TQqy1kYojE"},{title:"Stereocastro day22_t2",id:"Mg9n7lojtf4"},{title:"Stereocastro day22_t3",id:"eTGUV6TL_64"},{title:"Stereocastro day25_t1",id:"6-0oRIKhZUM"},{title:"Stereocastro day25_t2",id:"AS0vs1wGOj4"},{title:"Stereocastro day25_t3",id:"z7LUOAkgkOQ"},{title:"Stereocastro day26_t1",id:"y79beTuy_aY"},{title:"Stereocastro day26_t2",id:"GfUcYqDR7vM"},{title:"Stereocastro day27",id:"cgjY83b7h9M"},{title:"Stereocastro day31_t1",id:"oo2eSI1VNG8"},{title:"Stereocastro day31_t2",id:"KlKXEZhTYTU"},{title:"Stereocastro day31_t3",id:"jgClBhHFu88"}];
+        const videos=[{title:"Stereocastro day6_t1",id:"U6GlS_ciaVs",day:"Day 6"},{title:"Stereocastro day6_t2",id:"TeEOe5ExCDA",day:"Day 6"},{title:"Stereocastro day12_t3",id:"GoHzt-PgzPk",day:"Day 12"},{title:"Stereocastro day19",id:"3JHUEKB88fw",day:"Day 19"},{title:"Stereocastro day22_t1",id:"8TQqy1kYojE",day:"Day 22"},{title:"Stereocastro day22_t2",id:"Mg9n7lojtf4",day:"Day 22"},{title:"Stereocastro day22_t3",id:"eTGUV6TL_64",day:"Day 22"},{title:"Stereocastro day25_t1",id:"6-0oRIKhZUM",day:"Day 25"},{title:"Stereocastro day25_t2",id:"AS0vs1wGOj4",day:"Day 25"},{title:"Stereocastro day25_t3",id:"z7LUOAkgkOQ",day:"Day 25"},{title:"Stereocastro day26_t1",id:"y79beTuy_aY",day:"Day 26"},{title:"Stereocastro day26_t2",id:"GfUcYqDR7vM",day:"Day 26"},{title:"Stereocastro day27",id:"cgjY83b7h9M",day:"Day 27"},{title:"Stereocastro day31_t1",id:"oo2eSI1VNG8",day:"Day 31"},{title:"Stereocastro day31_t2",id:"KlKXEZhTYTU",day:"Day 31"},{title:"Stereocastro day31_t3",id:"jgClBhHFu88",day:"Day 31"}];
         document.addEventListener("DOMContentLoaded",function(){
-            const c=document.getElementById("tracks-stereocastro");
-            if(!c)return;
-            c.innerHTML="";
+            const container=document.getElementById("tracks-stereocastro");
+            if(!container)return;
+            container.innerHTML="";
+            const days={};
             videos.forEach(function(v){
-                const w=document.createElement("div");
-                w.className="track-item";
-                const f=document.createElement("iframe");
-                f.src="https://www.youtube.com/embed/"+v.id;
-                f.width="100%";
-                f.height="200";
-                f.frameBorder="no";
-                f.allow="autoplay; encrypted-media";
-                f.allowFullscreen=true;
-                f.loading="lazy";
-                f.title=v.title;
-                const t=document.createElement("p");
-                t.className="track-title";
-                t.textContent=v.title;
-                w.appendChild(f);
-                w.appendChild(t);
-                c.appendChild(w);
+                if(!days[v.day])days[v.day]=[];
+                days[v.day].push(v);
+            });
+            Object.keys(days).forEach(function(day){
+                const group=document.createElement("div");
+                group.className="day-group";
+                const title=document.createElement("h3");
+                title.className="day-title";
+                title.textContent=day;
+                group.appendChild(title);
+                const grid=document.createElement("div");
+                grid.className="day-videos";
+                days[day].forEach(function(v){
+                    const w=document.createElement("div");
+                    w.className="track-item";
+                    const f=document.createElement("iframe");
+                    f.src="https://www.youtube.com/embed/"+v.id;
+                    f.width="100%";
+                    f.height="180";
+                    f.frameBorder="no";
+                    f.allow="autoplay; encrypted-media";
+                    f.allowFullscreen=true;
+                    f.loading="lazy";
+                    f.title=v.title;
+                    const t=document.createElement("p");
+                    t.className="track-title";
+                    t.textContent=v.title;
+                    w.appendChild(f);
+                    w.appendChild(t);
+                    grid.appendChild(w);
+                });
+                group.appendChild(grid);
+                container.appendChild(group);
             });
         });
     </script>
