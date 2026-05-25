@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>GoodMakingNoise & DeepMakingRhythm | Portafolio Musical</title>
     <meta name="description" content="Portafolio musical de GoodMakingNoise y DeepMakingRhythm">
     <link rel="icon" type="image/jpeg" href="https://i1.sndcdn.com/avatars-000225616365-29s6bi-t50x50.jpg">
@@ -47,12 +44,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo" id="contacto-link">@GMN/DMR</a>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <span class="nav-logo">GMN/DMR</span>
             <div class="nav-links">
                 <a href="#goodmakingnoise">GoodMakingNoise</a>
                 <a href="#deepmakingrhythm">DeepMakingRhythm</a>
@@ -61,6 +53,7 @@
         </div>
     </nav>
     <header class="hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <img src="logo.jpg" alt="Logo" class="hero-logo">
             <h1 class="hero-title">GoodMakingNoise & DeepMakingRhythm</h1>
@@ -103,19 +96,9 @@
             <div class="track-info" id="track-info"></div>
         </div>
     </div>
-    <div class="modal" id="contacto-modal">
-        <div class="modal-container" style="max-width:500px; text-align:center;">
-            <span class="modal-close" id="contacto-close" style="position:absolute;top:-40px;right:0;color:#fff;font-size:2rem;cursor:pointer;">&times;</span>
-            <div class="modal-content" style="aspect-ratio:auto; padding:2rem;">
-                <h3 style="color:var(--accent);">Contacto</h3>
-                <p id="contacto-email" style="color:var(--text-secondary); margin:1rem 0;"></p>
-                <img id="contacto-qr" src="" alt="QR" style="width:200px; height:200px; margin:1rem auto; display:block;">
-            </div>
-        </div>
-    </div>
     <footer class="footer">
         <div class="footer-content">
-            <p><p><p>&copy; 2024 GoodMakingNoisecopy; <span id="year"></span> GoodMakingNoisecopy; <span id="year"></span> GoodMakingNoise & DeepMakingRhythm</p>
+            <p>&copy; 2024 GoodMakingNoise & DeepMakingRhythm</p>
             <div class="footer-links">
                 <a href="https://soundcloud.com/goodmakingnoise" target="_blank" rel="noopener">GoodMakingNoise</a>
                 <a href="https://soundcloud.com/deepmakingrhythm" target="_blank" rel="noopener">DeepMakingRhythm</a>
@@ -123,11 +106,6 @@
             </div>
         </div>
     </footer>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    menuToggle.addEventListener("click", function() {
-        navLinks.classList.toggle("active");
-    });
     <script src="js/fittext.js"></script>
     <script>
         const gmnTracks = [
@@ -239,9 +217,6 @@
             dmrTracks.forEach(function(track, i) { grid.appendChild(createCard(track, i, dmrTracks)); });
             container.appendChild(grid);
         }
-    document.getElementById("contacto-link").addEventListener("click", function(e) { e.preventDefault(); document.getElementById("contacto-modal").classList.add("active"); });
-    document.getElementById("contacto-close").addEventListener("click", function() { document.getElementById("contacto-modal").classList.remove("active"); });
-    document.getElementById("contacto-modal").addEventListener("click", function(e) { if (e.target === this) this.classList.remove("active"); });
         document.addEventListener("DOMContentLoaded", function() {
             buildGMN(); buildDMR();
             document.getElementById("video-modal").addEventListener("click", function(e) { if (e.target === this) closeModal(); });
@@ -254,23 +229,6 @@
                 if (e.key === "Escape") closeModal();
             });
         });
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    menuToggle.addEventListener("click", function() {
-        navLinks.classList.toggle("active");
-    });
     </script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    menuToggle.addEventListener("click", function() {
-        navLinks.classList.toggle("active");
-    });
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    menuToggle.addEventListener("click", function() {
-        navLinks.classList.toggle("active");
-    });
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
