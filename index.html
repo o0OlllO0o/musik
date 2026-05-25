@@ -45,6 +45,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo" id="contacto-link">@GMN/DMR</a>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="#goodmakingnoise">GoodMakingNoise</a>
                 <a href="#deepmakingrhythm">DeepMakingRhythm</a>
@@ -118,6 +123,11 @@
     </footer>
     <script src="js/fittext.js"></script>
     <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    menuToggle.addEventListener("click", function() {
+        navLinks.classList.toggle("active");
+    });
         const gmnTracks = [
             {title:"GMNoise Suite 01",id:"350657683",img:"https://i1.sndcdn.com/artworks-000250825114-1bim7e-t500x500.jpg"},
             {title:"GMNoise Suite 0",id:"274733117",img:"https://i1.sndcdn.com/artworks-000172611287-5xgq3n-t500x500.jpg"},
