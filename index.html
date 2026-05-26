@@ -185,22 +185,7 @@
             card.addEventListener("click", function() { currentTrackList = allTracks; if (list === gmnTracks) currentTrackIndex = index; else currentTrackIndex = gmnTracks.length + index; playTrack(track); });
             return card;
         }
-        async function playTrack(track) {
-            const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
-
-            if (isMobile) {
-                try {
-                    const clientId = "a3dd183a357fcff9e4d6c9ae9b7e8d2e";
-                    const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
-                    const data = await res.json();
-                    if (data.stream_url) {
-                        const streamUrl = data.stream_url + "?client_id=" + clientId;
-                        const audio = new Audio(streamUrl);
-                        audio.play();
-                        document.getElementById("track-info").textContent = track.title;
-                        document.getElementById("video-modal").classList.add("active");
-                        document.body.style.overflow = "hidden";
-                    } else {
+        function playTrack(track) {
                         alert("No se pudo obtener la URL de streaming.");
                     }
                 } catch (e) {
@@ -211,7 +196,7 @@
                 const content = document.getElementById("modal-content");
                 content.classList.add("fade-out");
                 setTimeout(function() {
-                    content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+                    content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&download=false&sharing=false&buying=false"></iframe>';
                     content.classList.remove("fade-out");
                 }, 250);
                 document.getElementById("track-info").textContent = track.title;
