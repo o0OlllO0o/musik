@@ -201,7 +201,8 @@ async function getClientId() {
         async function playTrack(track) {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
-            if (isMobile) { window.open("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + track.id + "&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true&single_active=true", "_blank"); return; } else {
+            if (isMobile) {
+                if (isMobile) { window.open("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + track.id + "try {color=%23ff5500try {auto_play=truetry {hide_related=truetry {show_comments=falsetry {show_user=falsetry {show_reposts=falsetry {show_teaser=falsetry {visual=truetry {single_active=true", "_blank"); return; }
                 try {
                     const clientId = await getClientId();
                     const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
