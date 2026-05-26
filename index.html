@@ -190,7 +190,7 @@
 
             if (isMobile) {
                 try {
-                    const clientId = "a3dd183a357fcff9e4d6c9ae9b7e8d2e";
+                    const clientId = "POy4x48uHpENQjixAeI9vTRMsXqo4LnX";
                     const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
                     const data = await res.json();
                     if (data.stream_url) {
