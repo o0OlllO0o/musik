@@ -202,10 +202,22 @@ async function getClientId() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
             if (isMobile) {
-                const slug = track.title.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "");
-                window.open("https://soundcloud.com/goodmakingnoise/" + slug, "_blank");
-                return;
-            } else {
+                try {
+                    const clientId = await getClientId();
+                    const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
+                    const data = await res.json();
+                    if (data.stream_url) {
+                        const streamUrl = data.stream_url + "?client_id=" + clientId;
+                        const audio = new Audio(streamUrl);
+                        audio.play();
+                        document.getElementById("track-info").textContent = track.title;
+                        document.getElementById("video-modal").classList.add("active");
+                        document.body.style.overflow = "hidden";
+                    } else {
+                        alert("No se pudo obtener la URL de streaming.");
+                    }
+                } catch (e) {
+                    console.error(e);
                     alert("Error al cargar el track. Verifica el client_id o tu conexión.");
                 }
             } else {
