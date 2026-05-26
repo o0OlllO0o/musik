@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Client ID de SoundCloud</title>
+    <style>
+        body { background: #0a0a0a; color: #e0e0e0; font-family: monospace; padding: 2rem; text-align: center; }
+        #id { color: #ff5500; font-size: 1.5rem; word-break: break-all; margin: 1rem 0; }
+        button { background: #ff5500; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #d14800; }
+        .error { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h2>SoundCloud Client ID</h2>
+    <p id="id">Obteniendo...</p>
+    <p id="status"></p>
+    <button onclick="copiar()">📋 Copiar</button>
+    <script>
+        async function obtenerClientId() {
+            try {
+                // Obtener el HTML de SoundCloud
+                const html = await fetch('https://soundcloud.com').then(r => r.text());
+                // Buscar URLs de archivos JS
+                const jsUrls = html.match(/src="(https:\/\/a-v2\.sndcdn\.com\/assets\/[^"]+\.js)"/g);
+                if (!jsUrls) throw new Error('No se encontraron archivos JS');
+                
+                document.getElementById('status').textContent = 'Buscando en ' + jsUrls.length + ' archivos JS...';
+                
+                // Buscar client_id en cada archivo
+                for (const url of jsUrls.slice(0, 10)) {
+                    const cleanUrl = url.replace('src="', '').replace('"', '');
+                    const js = await fetch(cleanUrl).then(r => r.text());
+                    const match = js.match(/client_id:"([a-zA-Z0-9]+)"/);
+                    if (match) {
+                        document.getElementById('id').textContent = match[1];
+                        document.getElementById('status').textContent = '✅ Encontrado en: ' + cleanUrl.split('/').pop();
+                        return;
+                    }
+                }
+                document.getElementById('id').textContent = 'No encontrado';
+                document.getElementById('status').textContent = '❌ No se pudo extraer el client_id';
+            } catch (e) {
+                document.getElementById('id').textContent = 'Error';
+                document.getElementById('status').textContent = '❌ ' + e.message;
+            }
+        }
+        
+        function copiar() {
+            const id = document.getElementById('id').textContent;
+            if (id && id !== 'Obteniendo...' && id !== 'Error') {
+                navigator.clipboard.writeText(id);
+                alert('✅ Client ID copiado: ' + id);
+            }
+        }
+        
+        obtenerClientId();
+    </script>
+</body>
+</html>
