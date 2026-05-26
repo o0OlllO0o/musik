@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         .day-group { margin-bottom: 3rem; }
-        .day-title { color: #FFD700; font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; }
+        .day-title { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; }
         .day-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
         .video-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .video-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
@@ -28,7 +28,7 @@
         .modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
         .modal-content.fade-out { opacity: 0; }
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3.5rem; color: #fff; cursor: pointer; z-index: 10001; user-select: none; transition: color 0.3s, background 0.3s; width: 56px; height: 90px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); border-radius: 8px; }
-        .nav-arrow:hover { color: #FFD700; background: rgba(0,0,0,0.6); }
+        .nav-arrow:hover { color: var(--accent); background: rgba(0,0,0,0.6); }
         .nav-prev { left: -70px; }
         .nav-next { right: -70px; }
         .track-info { text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem; }
@@ -106,8 +106,8 @@
             <span class="modal-close" id="contacto-close" style="position:absolute;top:-40px;right:0;color:#fff;font-size:2rem;cursor:pointer;">&times;</span>
             <div class="modal-content" style="aspect-ratio:auto; padding:2rem;">
                 <h3 style="color:var(--accent);">Contacto</h3>
-                <p id="contacto-email" style="font-size:1.5rem;">eleflante<span style="display:none">_nospam</span>@gmail<span style="display:none">_nospam</span>.com</p>
-                <img id="contacto-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200id="contacto-qr" src=""data=https://o0OlllO0o.github.io/musik" alt="QR" style="width:200px; height:200px; margin:1rem auto; display:block;">
+                <p id="contacto-email" style="color:var(--text-secondary); margin:1rem 0;"></p>
+                <img id="contacto-qr" src="" alt="QR" style="width:200px; height:200px; margin:1rem auto; display:block;">
             </div>
         </div>
     </div>
@@ -189,7 +189,7 @@
             const content = document.getElementById("modal-content");
             content.classList.add("fade-out");
             setTimeout(function() {
-                content.innerHTML = '<iframe sandbox="allow-scripts allow-same-origin allow-popups" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
                 content.classList.remove("fade-out");
             }, 250);
             document.getElementById("track-info").textContent = track.title;
