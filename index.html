@@ -291,3 +291,18 @@ async function getClientId() {
     </script>
 </body>
 </html>
+<script>
+// Redirigir a SoundCloud en móviles
+if (/Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    document.addEventListener('click', function(e) {
+        var card = e.target.closest('.video-card');
+        if (!card) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var title = card.querySelector('.card-title').textContent;
+        var slug = title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+        window.open('https://soundcloud.com/goodmakingnoise/' + slug, '_blank');
+    }, true);
+}
+</script>
+</body>
