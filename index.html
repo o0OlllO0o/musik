@@ -185,12 +185,43 @@
             card.addEventListener("click", function() { currentTrackList = allTracks; if (list === gmnTracks) currentTrackIndex = index; else currentTrackIndex = gmnTracks.length + index; playTrack(track); });
             return card;
         }
+/* Función para obtener client_id automáticamente */
+async function getClientId() {
+    // Intentar obtener de la caché primero
+    const cached = localStorage.getItem('sc_client_id');
+    const cachedTime = localStorage.getItem('sc_client_id_time');
+    if (cached && cachedTime && (Date.now() - parseInt(cachedTime)) < 3600000) {
+        return cached;
+    }
+    
+    try {
+        // Obtener el HTML de SoundCloud
+        const html = await fetch('https://soundcloud.com').then(r => r.text());
+        // Buscar URLs de archivos JS
+        const jsUrls = html.match(/src="(https:\/\/a-v2\.sndcdn\.com\/assets\/[^"]+\.js)"/g);
+        if (!jsUrls) throw new Error('No se encontraron archivos JS');
+        
+        // Buscar client_id en cada archivo
+        for (const url of jsUrls.slice(0, 5)) {
+            const js = await fetch(url.replace('src="', '').replace('"', '')).then(r => r.text());
+            const match = js.match(/client_id:"([a-zA-Z0-9]+)"/);
+            if (match) {
+                localStorage.setItem('sc_client_id', match[1]);
+                localStorage.setItem('sc_client_id_time', Date.now().toString());
+                return match[1];
+            }
+        }
+    } catch (e) {
+        // Si falla, usar el último client_id conocido
+        return localStorage.getItem('sc_client_id') || 'POy4x48uHpENQjixAeI9vTRMsXqo4LnX';
+    }
+}
         async function playTrack(track) {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
             if (isMobile) {
                 try {
-                    const clientId = "POy4x48uHpENQjixAeI9vTRMsXqo4LnX";
+                    const clientId = await getClientId();
                     const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
                     const data = await res.json();
                     if (data.stream_url) {
