@@ -189,7 +189,7 @@
 async function getClientId() {
     return new Promise((resolve) => {
         const script = document.createElement("script");
-        script.src = "https://a-v2.sndcdn.com/assets/0-268619de.js";
+        script.src = "https://a-v2.sndcdn.com/assets/54-8de421c1.js";
         script.onload = () => {
             const id = script.textContent.match(/client_id:"([^"]+)"/)?.[1];
             resolve(id || "POy4x48uHpENQjixAeI9vTRMsXqo4LnX");
