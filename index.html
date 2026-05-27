@@ -189,7 +189,7 @@
 async function getClientId() {
     return new Promise((resolve) => {
         const script = document.createElement("script");
-        script.src = "https://a-v2.sndcdn.com/assets/54-8de421c1.js";
+        script.src = "https://a-v2.sndcdn.com/assets/0-268619de.js";
         script.onload = () => {
             const id = script.textContent.match(/client_id:"([^"]+)"/)?.[1];
             resolve(id || "POy4x48uHpENQjixAeI9vTRMsXqo4LnX");
@@ -202,7 +202,7 @@ async function getClientId() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
             if (isMobile) {
-                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&single_active=true&show_playlist=false"></iframe>';
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&inverse=true"></iframe>';
                 content.classList.remove("fade-out");
                 document.getElementById("track-info").textContent = track.title;
                 document.getElementById("video-modal").classList.add("active");
