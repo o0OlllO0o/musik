@@ -121,7 +121,6 @@
             </div>
         </div>
     </footer>
-    <script src="js/fittext.js"></script>
     <script>
     const menuToggle = document.getElementById("menu-toggle");
     const navLinks = document.querySelector(".nav-links");
@@ -202,6 +201,7 @@ async function getClientId() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
             if (isMobile) {
+                const content = document.getElementById("modal-content");
                 content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&inverse=true"></iframe>';
                 content.classList.remove("fade-out");
                 document.getElementById("track-info").textContent = track.title;
