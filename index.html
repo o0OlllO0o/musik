@@ -202,6 +202,14 @@ async function getClientId() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
 
             if (isMobile) {
+                content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&single_active=true&show_playlist=false"></iframe>';
+                content.classList.remove("fade-out");
+                document.getElementById("track-info").textContent = track.title;
+                document.getElementById("video-modal").classList.add("active");
+                document.body.style.overflow = "hidden";
+                return;
+            }
+            if (false) {
                 try {
                     const clientId = await getClientId();
                     const res = await fetch("https://api-v2.soundcloud.com/tracks/" + track.id + "?client_id=" + clientId);
@@ -224,7 +232,7 @@ async function getClientId() {
                 const content = document.getElementById("modal-content");
                 content.classList.add("fade-out");
                 setTimeout(function() {
-                    content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&download=false&sharing=false&buying=false&show_playcount=false"></iframe>';
+                    content.innerHTML = '<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'+track.id+'&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"></iframe>';
                     content.classList.remove("fade-out");
                 }, 250);
                 document.getElementById("track-info").textContent = track.title;
