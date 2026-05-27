@@ -199,7 +199,7 @@ async function getClientId() {
     });
 }
         async function playTrack(track) {
-            const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) || window.innerWidth <= 1024;
+            const isMobile = false;
 
             if (isMobile) {
                 try {
