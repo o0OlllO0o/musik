@@ -18,73 +18,46 @@
 </head>
 <body>
     <h1>📊 Estadísticas de Visitas</h1>
-    
     <div class="stat-box">
-        <p>Visitas totales (aproximado):</p>
+        <p>Visitas totales:</p>
         <p class="stat-value" id="total">Cargando...</p>
     </div>
-    
     <button onclick="actualizar()">🔄 Actualizar</button>
     <button onclick="limpiar()">🗑️ Limpiar registros locales</button>
-    
     <h2>Últimas visitas</h2>
     <table>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Página</th>
-                <th>Ubicación</th>
-                <th>IP</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-visitas">
-            <tr><td colspan="4">Cargando...</td></tr>
-        </tbody>
+        <thead><tr><th>Fecha</th><th>Página</th><th>Ubicación</th><th>IP</th></tr></thead>
+        <tbody id="tabla-visitas"><tr><td colspan="4">Cargando...</td></tr></tbody>
     </table>
-    
     <script>
         const COUNTER_KEY = "musik-counter";
-        
         async function actualizar() {
-            // Obtener contador total
             try {
                 const res = await fetch("https://api.countapi.xyz/get/" + COUNTER_KEY);
                 const data = await res.json();
                 document.getElementById("total").textContent = data.value || 0;
             } catch(e) {
-                document.getElementById("total").textContent = "Error al cargar";
+                document.getElementById("total").textContent = "Error";
             }
-            
-            // Mostrar visitas locales
             const stored = JSON.parse(localStorage.getItem("musik-visits-detail") || "[]");
             const tbody = document.getElementById("tabla-visitas");
             tbody.innerHTML = "";
-            
             if (stored.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4">No hay visitas registradas aún</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4">No hay visitas aún</td></tr>';
                 return;
             }
-            
-            // Mostrar en orden inverso (más recientes primero)
             stored.reverse().forEach(v => {
                 const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${new Date(v.timestamp).toLocaleString()}</td>
-                    <td>${v.path}</td>
-                    <td>${v.location}</td>
-                    <td>${v.ip}</td>
-                `;
+                row.innerHTML = `<td>${new Date(v.timestamp).toLocaleString()}</td><td>${v.path}</td><td>${v.location}</td><td>${v.ip}</td>`;
                 tbody.appendChild(row);
             });
         }
-        
         function limpiar() {
-            if (confirm("¿Borrar registros locales? El contador total se mantiene.")) {
+            if (confirm("¿Borrar registros locales?")) {
                 localStorage.removeItem("musik-visits-detail");
                 actualizar();
             }
         }
-        
         actualizar();
     </script>
 </body>
