@@ -385,3 +385,4 @@ body {
     .nav-links.active { display: flex; }
     .menu-toggle { display: flex; }
 }
+.day-title, .tracks-title { text-decoration: none; border-bottom: 2px solid var(--accent); }
