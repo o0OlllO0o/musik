@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Visitas</title>
+    <style>
+        body { background: #0a0a0a; color: #e0e0e0; font-family: monospace; padding: 2rem; }
+        h1 { color: #ff5500; }
+        .stat-box { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+        .stat-value { font-size: 2rem; color: #ff5500; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #333; }
+        th { color: #ff5500; }
+        button { background: #ff5500; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin: 0.5rem; }
+        button:hover { background: #d14800; }
+    </style>
+</head>
+<body>
+    <h1>📊 Estadísticas de Visitas</h1>
+    
+    <div class="stat-box">
+        <p>Visitas totales (aproximado):</p>
+        <p class="stat-value" id="total">Cargando...</p>
+    </div>
+    
+    <button onclick="actualizar()">🔄 Actualizar</button>
+    <button onclick="limpiar()">🗑️ Limpiar registros locales</button>
+    
+    <h2>Últimas visitas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Página</th>
+                <th>Ubicación</th>
+                <th>IP</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-visitas">
+            <tr><td colspan="4">Cargando...</td></tr>
+        </tbody>
+    </table>
+    
+    <script>
+        const COUNTER_KEY = "musik-counter";
+        
+        async function actualizar() {
+            // Obtener contador total
+            try {
+                const res = await fetch("https://api.countapi.xyz/get/" + COUNTER_KEY);
+                const data = await res.json();
+                document.getElementById("total").textContent = data.value || 0;
+            } catch(e) {
+                document.getElementById("total").textContent = "Error al cargar";
+            }
+            
+            // Mostrar visitas locales
+            const stored = JSON.parse(localStorage.getItem("musik-visits-detail") || "[]");
+            const tbody = document.getElementById("tabla-visitas");
+            tbody.innerHTML = "";
+            
+            if (stored.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4">No hay visitas registradas aún</td></tr>';
+                return;
+            }
+            
+            // Mostrar en orden inverso (más recientes primero)
+            stored.reverse().forEach(v => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${new Date(v.timestamp).toLocaleString()}</td>
+                    <td>${v.path}</td>
+                    <td>${v.location}</td>
+                    <td>${v.ip}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function limpiar() {
+            if (confirm("¿Borrar registros locales? El contador total se mantiene.")) {
+                localStorage.removeItem("musik-visits-detail");
+                actualizar();
+            }
+        }
+        
+        actualizar();
+    </script>
+</body>
+</html>
